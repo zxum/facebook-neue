@@ -13,7 +13,7 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <p>Signed in as <%= current_user.name %> </p>
-
+    <p><%= link_to "Profile", profile_path(current_user.profile) %></p>
     <p><%= link_to "Sign Up", new_user_registration_path, class: "button" %></p>
     <p><%= link_to "Login", new_user_session_path, class: "button" %></p>
     <p><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button" %></p>

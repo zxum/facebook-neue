@@ -1,0 +1,13 @@
+<p>Name: <%= @profile.user.name %></p>
+<p>Username: <%= @profile.user.username %></p>
+<p>Relationship Status: <%= @profile.relationship_status %></p>
+<p>Birthdate: <%= @profile.birthdate %></p>
+
+<p>Hometown: <%= @profile.hometown %></p>
+<p>Current City: <%= @profile.current_city %></p>
+
+<p>Favorite Quote: <%= @profile.favorite_quote %></p>
+<p>About Me: <%= @profile.about_you %></p>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
