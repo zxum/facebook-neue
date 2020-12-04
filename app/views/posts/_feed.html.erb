@@ -1,0 +1,33 @@
+  <% @posts.each do |post| %>
+    
+      <%= post.content %>
+      
+      <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+      <% if pre_like %>
+        <%= button_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+      <% else %>
+        <%= button_to 'Like', post_like_path(post), method: :post %>
+      <% end %>
+
+      <% post.comments.each do |comment| %>
+        <p>
+          <%= comment.content %>
+          <%= link_to 'Delete', post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } %> 
+        </p>
+      <% end %>
+      <%= form_for [ post, Comment.new ] do |f| %>
+      <p>
+        <%= f.label :content, "Comment here" %></br>
+        <%= f.text_area :content %>
+      </p>
+      <p>
+        <%= f.submit 'Add Comment' %>
+      </p>
+      <% end %>
+      </br>
+      <%= link_to 'Show', post %>
+      <%= link_to 'Edit', edit_post_path(post) %>
+      <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </br>
+      </br>
+  <% end %>
