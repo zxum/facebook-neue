@@ -1,13 +1,15 @@
 class User < ApplicationRecord
+
+  after_create :build_profile
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   # PROFILE ASSOCIATION
-  has_one :profile
+  has_one :profile, dependent: :destroy 
 
   # POSTS ASSOCIATION
-  has_many :authored_posts, class_name: "Post", foreign_key: "author_id"
+  has_many :authored_posts, class_name: "Post", foreign_key: "author_id", dependent: :destroy
 
   # LIKES ASSOCIATION
   has_many :likes, dependent: :destroy
@@ -16,8 +18,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   # FRIENDSHIPS ASSOCIATION
-  has_many :friendships
-  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :friendships, dependent: :destroy
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id', dependent: :destroy 
+  has_many :inverse_friends, through: :inverse_friendships, source: :user
 
 
 
@@ -25,7 +28,7 @@ class User < ApplicationRecord
 
   def friends
     friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
-    friends_array + inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
+    friends_array += inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
     friends_array.compact 
   end
 
@@ -34,7 +37,7 @@ class User < ApplicationRecord
   end 
 
   def friend_requests
-    inverse_friendships.map{ |friendship| friendship.user if !friendship.confirmed }.compact
+    inverse_friendships.map{ |friendship| friendship if !friendship.confirmed }.compact
   end
 
   def confirm_friend(user)
@@ -45,5 +48,11 @@ class User < ApplicationRecord
 
   def friend? 
     friends.include?(user)
+  end
+
+  # PROFILE
+
+  def build_profile
+    Profile.create(user: self)
   end
 end

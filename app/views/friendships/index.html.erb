@@ -1,0 +1,17 @@
+<h1>Friend Requests</h1>
+<% @friend_requests.each do |friendship| %>
+
+  <%= friendship.user.name %>
+  <%= friendship.user.username %>
+  <%= link_to "Accept", friendship_path(friendship), method: :patch %>
+<% end %>
+
+<h1>Friends</h1>
+
+<% @friends.each do |friend| %>
+
+  <%= friend.name %>
+  <%= friend.username %>
+  <%= link_to "Unfriend", friendship_path(id: friend),method: :delete %>
+
+<% end %>

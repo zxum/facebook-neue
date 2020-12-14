@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = current_user.authored_posts
+    @friendsposts = current_user.friends.each { |friend| @posts << friend.authored_posts }
+    @posts
   end
 
   # GET /posts/1
