@@ -1,3 +1,4 @@
+<%= image_tag(@profile.picture, width: 128) if @profile.picture.attached? %>
 <p>Name: <%= @profile.user.name %></p>
 <p>Username: <%= @profile.user.username %></p>
 <p>Relationship Status: <%= @profile.relationship_status %></p>

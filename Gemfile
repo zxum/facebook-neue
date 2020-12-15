@@ -40,6 +40,9 @@ gem 'devise'
 
 gem "bulma-rails", "~> 0.9.0" 
 
+gem 'google-cloud-storage', '~> 1.29', '>= 1.29.2', require: false
+
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

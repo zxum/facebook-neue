@@ -1,3 +1,4 @@
+<%= image_tag(@post.picture) if @post.picture.attached? %>
 <p><%= @post.content %></p>
 
 <% unless current_user.id == @post.author_id %>
