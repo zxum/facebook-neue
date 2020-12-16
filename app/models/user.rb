@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[facebook]
+
   # PROFILE ASSOCIATION
   has_one :profile, dependent: :destroy 
 
@@ -78,4 +79,12 @@ class User < ApplicationRecord
     end
   end
   
+  # MAILER 
+
+  after_create :sign_up_send
+  
+  def sign_up_send
+    RegistrationMailer.sign_up(self).deliver
+    redirect_to root_path, alert: "Thank you for signing up!"
+  end
 end
