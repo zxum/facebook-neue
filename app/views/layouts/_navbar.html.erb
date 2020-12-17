@@ -1,0 +1,56 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <span class="icon is-large">
+      <%= link_to root_path do %>
+        <i class="fab fa-2x fa-facebook"></i>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="navbar-menu">
+    <div class="navbar-end">
+    <% if user_signed_in? %>
+      <div class="navbar-item">
+        <%= link_to user_path(current_user), class: 'profile-name' do %>
+          <%= image_tag(current_user.profile.picture, width: 28) if current_user.profile.picture.attached? %><%= current_user.name %>
+        <% end %>
+      </div>
+
+      <span class="navbar-item">
+        <%= link_to current_user.friend_requests.count, friendships_path, class: "notif-bubble" %>
+      </span>
+    <% end %>
+
+    <div class="navbar-item has-dropdown is-hoverable">
+    <div class="navbar-link is-arrowless">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="navbar-dropdown is-right">
+      <% if user_signed_in? %>
+        <span class="navbar-item">
+          <%= link_to "People", users_path %>
+        </span>
+
+        <span class="navbar-item">
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        </span>
+      <% else %>
+        <span class="navbar-item">
+          <%= link_to "Sign Up", new_user_registration_path%>
+        </span>
+
+        <span class="navbar-item">
+          <%= link_to "Login", new_user_session_path %>
+        </span>
+      <% end %>
+    </div>
+
+    
+    </div>
+    </div>
+  </div>
+</nav>
+
+
+
