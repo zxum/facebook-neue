@@ -15,3 +15,49 @@
  */
 
 @import "bulma";
+// 
+.profile-icon {
+    border-radius: 50%;
+}
+
+// NAVBAR 
+nav .fa-facebook {
+    color: blue;
+}
+
+nav .navbar-item img {
+    border-radius: 50%;
+}
+
+nav .navbar-item .profile-name {
+    display: flex;
+    align-items: center;
+}
+
+nav .navbar-item .notif-bubble {
+    background-color: red;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+// PEOPLE 
+.card {
+    margin: 1.5em;
+}
+
+.card-content {
+    padding: 1.25em 0 0 0;
+}
+
+.card-content .media-left {
+    margin-left: 1em;
+}
+
+.pending-friend-request {
+    font-size: .85em;
+    background-color: #ccc;
+}

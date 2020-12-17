@@ -1,17 +1,57 @@
-<h1>Friend Requests</h1>
-<% @friend_requests.each do |friendship| %>
+<div class="columns is-centered">
+  <div class="column is-4">
+    <h1>Friend Requests</h1>
+    <% @friend_requests.each do |friendship| %>
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <%= link_to user_path(friendship.user) do %>
+                <%= image_tag(friendship.user.profile.picture, width: 28, class: "profile-icon") if friendship.user.profile.picture.attached? %>
+            </figure>
+          </div>
 
-  <%= friendship.user.name %>
-  <%= friendship.user.username %>
-  <%= link_to "Accept", friendship_path(friendship), method: :patch %>
-<% end %>
+          <div class="media-content">
+            <p class="title is-4"><%= friendship.user.name %></p>
+            <p class="subtitle is-6">@<%= friendship.user.username %></p>
+          </div>
+              <% end %>
+        </div>
 
-<h1>Friends</h1>
+        <footer class="card-footer">
+          <%= link_to "Accept", friendship_path(friendship), method: :patch, class: "card-footer-item" %>
+        </footer>
+      </div>
+    </div>
+    <% end %>
 
-<% @friends.each do |friend| %>
+    <h1>Friends</h1>
+    <% @friends.each do |friend| %>
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <%= link_to user_path(friend) do %>
+                <%= image_tag(friend.profile.picture, width: 28, class: "profile-icon") if friend.profile.picture.attached? %>
+            </figure>
+          </div>
 
-  <%= friend.name %>
-  <%= friend.username %>
-  <%= link_to "Unfriend", friendship_path(id: friend),method: :delete %>
+          <div class="media-content">
+            <p class="title is-4"><%= friend.name %></p>
+            <p class="subtitle is-6">@<%= friend.username %></p>
+          </div>
+              <% end %>
+        </div>
 
-<% end %>
+        <footer class="card-footer">
+          <%= link_to "Unfriend", friendship_path(id: friend), method: :delete, class: "card-footer-item" %>
+        </footer>
+      </div>
+    </div>
+    <% end  %>
+
+  </div>
+</div>
+
