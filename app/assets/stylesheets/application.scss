@@ -45,19 +45,34 @@ nav .navbar-item .notif-bubble {
 }
 
 // PEOPLE 
-.card {
+.user-index .card {
     margin: 1.5em;
 }
 
-.card-content {
+.user-index .card-content {
     padding: 1.25em 0 0 0;
 }
 
-.card-content .media-left {
+.user-index .card-content .media-left {
     margin-left: 1em;
 }
 
-.pending-friend-request {
+.user-index .pending-friend-request {
     font-size: .85em;
     background-color: #ccc;
+}
+
+// COMMENT FORM
+.comment-form {
+    display: flex;
+    width: 100%;
+}
+
+.comment-form .field {
+    width: 100%;
+}
+
+// POST FEED 
+.post-box {
+    margin: 1em;
 }

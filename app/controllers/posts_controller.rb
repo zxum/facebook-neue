@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = current_user.authored_posts.new(post_params)
+    @post = current_user.authored_posts.build(post_params)
 
     respond_to do |format|
       if @post.save

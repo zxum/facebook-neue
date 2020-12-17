@@ -1,6 +1,7 @@
 <div class="columns is-centered">
   <div class="column is-4">
     <h1>Friend Requests</h1>
+    <div class="user-index">
     <% @friend_requests.each do |friendship| %>
     <div class="card">
       <div class="card-content">
@@ -25,8 +26,10 @@
       </div>
     </div>
     <% end %>
+    </div>
 
     <h1>Friends</h1>
+    <div class="user-index">
     <% @friends.each do |friend| %>
     <div class="card">
       <div class="card-content">
@@ -51,7 +54,7 @@
       </div>
     </div>
     <% end  %>
-
+    </div>
   </div>
 </div>
 

@@ -1,7 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class="columns is-centered">
+  <div class="column is-3">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square profile-icon">
+          <%= image_tag(current_user.profile.picture, width: 128) if current_user.profile.picture.attached? %>
+        </figure>
+      </div>
+
+      <div class="card-content">
+        <div class="media">
+          <div class="media-content">
+            <p class="title is-4"><%= current_user.name %></p>
+            <p class="subtitle is-5"><%= current_user.username %></p>
+          </div>
+        </div>
+
+        <div class="content">
+          <strong>Birthday:</strong><small><%= current_user.profile.birthdate %></small></br>
+          <strong>Current City:</strong><small><%= current_user.profile.current_city %></small>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="column is-8">
+    <%= render 'post_shared/feed' %>
+  </div>
+</div>
 
 
-<%= render 'post_shared/feed' %>
+
+
 
 
 <%= link_to 'New Post', new_post_path %>
