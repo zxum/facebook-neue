@@ -2,8 +2,9 @@
 
 <div class="card post-box">
   <div class="card-content">
-    <div class="media">
+    <div class="media post-header">
       <div class="media-left">
+      <%= link_to user_path(post.author) do %>
         <figure class="image is-48x48">
           <%= image_tag(post.author.profile.picture, class: "profile-icon") if post.author.profile.picture.attached? %>
         </figure>
@@ -11,9 +12,18 @@
 
       <div class="media-content">
         <p class="title is-4"><%= post.author.name %></p>
-        <p class="subtitle is-6">@<%= post.author.username %></p>
+        <p class="subtitle is-6"><%= post.created_at.strftime("%B %e, %Y at %l:%M %p") %></p>
+        <% end %>
       </div>
+      
 
+      <div class="media-right">
+        <% if current_user.id == post.author.id %>
+            <%= link_to post_path(post), method: :delete, data: { confirm: 'Are you sure?' } do %> 
+              <i class="fas fa-times"></i>
+            <% end %>
+         <% end %>
+      </div>
     </div>
 
 
@@ -23,7 +33,7 @@
 
     <div class="card-image">
       <figure class="image">
-        <%= image_tag(post.picture) if post.picture.attached? %>
+        <%= image_tag(post.picture, class: "post-image") if post.picture.attached? %>
       </figure>
     </div>
 
@@ -48,25 +58,33 @@
 
     <hr class="solid">
 
+    <p class="is-size-7 stats"><%= post.likes.count %> Likes | <%= post.comments.count %> Comments </p>
+
     <% post.comments.each do |comment| %>
 
-    <div class="media-left">
-      <figure class="image is-48x48">
-        <%= image_tag(comment.user.profile.picture, class: "profile-icon") if comment.user.profile.picture.attached? %>
-      </figure>
-    </div>
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <%= image_tag(comment.user.profile.picture, class: "profile-icon") if comment.user.profile.picture.attached? %>
+        </figure>
+      </div>
+      <div class="comment-bubble">
+      <div class="media-content">
+        <strong><%= comment.user.name %></strong><span> <%= comment.content %></span>
+      </div>
 
-    <div class="media-content">
-      <%= comment.content %>
-    </div>
-
-    <div class="media-right">
-      <% if current_user.id == comment.user.id %>
-          <%= link_to '<i class="fas fa-times"></i>', post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } %> 
-      <% end %>
-    </div>
-
+      <div class="media-right">
+        <% if current_user.id == comment.user.id %>
+            <%= link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %> 
+              <i class="fas fa-times"></i>
+            <% end %>
+         <% end %>
+      </div>
+      </div>
+   
+    </article>
     <% end %>
+
 
     <article class="media comment-form">
       <figure class="media-left">
@@ -77,7 +95,7 @@
       <%= form_for [post, Comment.new], html: { class: 'comment-form'} do |f| %>
         <div class="field is-grouped">
           <p class="control is-expanded">
-            <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea' %>
+            <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea',rows: '1' %>
           </p>
 
           <p class="control">

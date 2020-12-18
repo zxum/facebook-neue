@@ -85,6 +85,5 @@ class User < ApplicationRecord
   
   def sign_up_send
     RegistrationMailer.sign_up(self).deliver
-    redirect_to root_path, alert: "Thank you for signing up!"
   end
 end

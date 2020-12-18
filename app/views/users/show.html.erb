@@ -1,17 +1,14 @@
-<p>Name: <%= @profile.user.name %></p>
-<p>Username: <%= @profile.user.username %></p>
-<p>Relationship Status: <%= @profile.relationship_status %></p>
-<p>Birthdate: <%= @profile.birthdate %></p>
+<div class="columns is-centered">
+  <div class="column is-3">
+    <%= render 'profileblurb' %>
+  </div>
 
-<p>Hometown: <%= @profile.hometown %></p>
-<p>Current City: <%= @profile.current_city %></p>
-
-<p>Favorite Quote: <%= @profile.favorite_quote %></p>
-<p>About Me: <%= @profile.about_you %></p>
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', :back %>
-
-<% unless @posts.nil? %>
-  <%= render 'post_shared/feed' %>
-<% end %>
+  <div class="column is-8">
+    <% if current_user.id == @user.id %>
+    <%= render 'post_shared/form' %>
+    <% end %>
+    <% unless @posts.nil? %>
+    <%= render 'post_shared/feed' %>
+    <% end %>
+  </div>
+</div>

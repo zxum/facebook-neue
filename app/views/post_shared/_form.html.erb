@@ -1,0 +1,28 @@
+
+<div class="card post-box">
+  <div class="card-content">
+    <article class="media">
+      <figure class="media-left">
+        <div class="image is-48x48">
+          <%= image_tag(current_user.profile.picture, class: 'profile-icon') if current_user.profile.picture.attached? %>
+        </div>
+      </figure>
+
+      <%= form_with(model: @post, local: true, class: 'post-form') do |form| %>
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <%= form.text_area :content, placeholder: "Add a Post", class: 'textarea', rows: '2' %>
+            <%= form.file_field :picture, class: 'file-upload' %>
+          </p>
+
+
+          <p class="control">
+            <%= form.submit 'Post', class: 'button is-info'%>
+          </p>
+        </div>
+
+      <% end %>
+
+    </article>
+  </div>
+</div>

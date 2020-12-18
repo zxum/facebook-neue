@@ -44,6 +44,10 @@ nav .navbar-item .notif-bubble {
     font-weight: bold;
 }
 
+nav .navbar-name {
+    padding-left: .5em;
+}
+
 // PEOPLE 
 .user-index .card {
     margin: 1.5em;
@@ -72,7 +76,48 @@ nav .navbar-item .notif-bubble {
     width: 100%;
 }
 
+.media+.media {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
 // POST FEED 
 .post-box {
     margin: 1em;
+}
+
+.post-header {
+    display: flex;
+    width: 100%;
+}
+
+.post-image {
+    margin-bottom: 1.5em;
+}
+
+.stats {
+    margin-bottom: 1.5em;
+}
+
+.comment-bubble {
+    display: flex;
+    width: 100%;
+    border-radius: 40px;
+    border: 1px solid lightgrey;
+    padding: .5em 1.25em .5em 1.25em;
+}
+
+// POST FORM 
+.post-form {
+    display: flex;
+    width: 100%;
+}
+
+.post-form .field {
+    width: 100%;
+}
+
+.file-upload {
+    margin-top: 1em;
 }

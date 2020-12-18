@@ -12,7 +12,7 @@
     <% if user_signed_in? %>
       <div class="navbar-item">
         <%= link_to user_path(current_user), class: 'profile-name' do %>
-          <%= image_tag(current_user.profile.picture, width: 28) if current_user.profile.picture.attached? %><%= current_user.name %>
+          <%= image_tag(current_user.profile.picture, width: 28) if current_user.profile.picture.attached? %> <span class="navbar-name"> <%= current_user.name %> </span>
         <% end %>
       </div>
 

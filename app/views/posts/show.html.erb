@@ -1,32 +1,129 @@
-<%= image_tag(@post.picture) if @post.picture.attached? %>
-<p><%= @post.content %></p>
+<div class="card post-box">
+  <div class="card-content">
+    <div class="media post-header">
+      <div class="media-left">
+      <%= link_to user_path(@post.author) do %>
+        <figure class="image is-48x48">
+          <%= image_tag(@post.author.profile.picture, class: "profile-icon") if @post.author.profile.picture.attached? %>
+        </figure>
+      </div>
 
-<% unless current_user.id == @post.author_id %>
-  <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-  <% if pre_like %>
-    <%= button_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
-  <% else %>
-    <%= button_to 'Like', post_like_path(@post), method: :post %>
-  <% end %>
-<% end %>
+      <div class="media-content">
+        <p class="title is-4"><%= @post.author.name %></p>
+        <p class="subtitle is-6"><%= @post.created_at.strftime("%B %e, %Y at %l:%M %p") %></p>
+        <% end %>
+      </div>
+      
+
+      <div class="media-right">
+        <% if current_user.id == @post.author.id %>
+            <%= link_to post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } do %> 
+              <i class="fas fa-times"></i>
+            <% end %>
+         <% end %>
+      </div>
+    </div>
+
+
+    <div class="content">
+      <p><%= @post.content %></p>
+    </div>
+
+    <div class="card-image">
+      <figure class="image">
+        <%= image_tag(@post.picture, class: "post-image") if @post.picture.attached? %>
+      </figure>
+    </div>
+
+    <div class="level">
+      <div class="level-item">
+        <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+          <% if pre_like %>
+            <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
+          <% else %>
+            <%= link_to 'Like', post_like_path(@post), method: :post %>
+          <% end %>
+      </div>
+
+      <div class="level-item">
+        <%= link_to 'Comment' %>
+      </div>
+
+      <div class="level-item">
+        <%= link_to 'Share', @post %>
+      </div>
+    </div>
+
+    <hr class="solid">
+
+    <p class="is-size-7 stats"><%= @post.likes.count %> Likes | <%= @post.comments.count %> Comments </p>
+
+    <% @post.comments.each do |comment| %>
+
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-48x48">
+          <%= image_tag(comment.user.profile.picture, class: "profile-icon") if comment.user.profile.picture.attached? %>
+        </figure>
+      </div>
+      <div class="comment-bubble">
+      <div class="media-content">
+        <strong><%= comment.user.name %></strong><span> <%= comment.content %></span>
+      </div>
+
+      <div class="media-right">
+        <% if current_user.id == comment.user.id %>
+            <%= link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %> 
+              <i class="fas fa-times"></i>
+            <% end %>
+         <% end %>
+      </div>
+      </div>
+   
+    </article>
+    <% end %>
+
+
+    <article class="media comment-form">
+      <figure class="media-left">
+        <div class="image is-48x48">
+          <%= image_tag(current_user.profile.picture, class: 'profile-icon') if current_user.profile.picture.attached? %>
+        </div>
+      </figure>
+      <%= form_for [@post, Comment.new], html: { class: 'comment-form'} do |f| %>
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea',rows: '1' %>
+          </p>
+
+          <p class="control">
+            <%= f.submit 'Add Comment', class: 'button is-info' %>
+          </p>
+        </div>
+      <% end %>
+    </article>
+
+  </div>
+</div>
 
 
 
-<% @post.comments.each do |comment| %>
-  <p>
-  <%= comment.content %>
-  <%= link_to 'Delete Comment', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-  </p>
-<% end %>
-<%= form_for [ @post, Comment.new ] do |f| %>
-<p>
-  <%= f.label :content, "Comment here" %></br>
-  <%= f.text_area :content %>
-</p>
-<p>
-  <%= f.submit 'Add Comment' %>
-</p>
-<% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
