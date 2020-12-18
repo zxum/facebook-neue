@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(content: params[:comment][:content], post: @post)
 
     if @comment.save
-      redirect_to post_path(@post)
+      redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "Something went wrong"
       redirect_to post_path(@post)
@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
     @comment.destroy 
     if @comment.destroy
       flash[:notice] = 'Comment successfully destroyed'
-      redirect_to post_path(@post)
+      redirect_back(fallback_location: root_path)
     end
   end
 

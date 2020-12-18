@@ -9,7 +9,7 @@ class LikesController < ApplicationController
       @like = @post.likes.build(user_id: current_user.id)
       respond_to do |format|
         if @like.save 
-          format.html { redirect_to post_path(@post), notice: 'You liked a post' }
+          format.html { redirect_back(fallback_location: root_path), notice: 'You liked a post' }
           format.json { render :show, status: :created, location: @like }
         else 
           format.html { render :new }
