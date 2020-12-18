@@ -5,9 +5,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = current_user.authored_posts
-    @friendsposts = current_user.friends.each { |friend| @posts << friend.authored_posts }
-    @posts
+    @current_user_posts = current_user.authored_posts
+    @friends_posts = []
+
+    current_user.friends.each do |friend|
+      @friends_posts += friend.authored_posts
+    end
+    
+    @posts = @current_user_posts + @friends_posts
   end
 
   # GET /posts/1
