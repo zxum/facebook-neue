@@ -1,5 +1,5 @@
 
-<div class="card post-box">
+<div class="card post-box neue-box">
   <div class="card-content">
     <article class="media">
       <figure class="media-left">
@@ -11,13 +11,13 @@
       <%= form_with(model: @post, local: true, class: 'post-form') do |form| %>
         <div class="field is-grouped">
           <p class="control is-expanded">
-            <%= form.text_area :content, placeholder: "Add a Post", class: 'textarea', rows: '2' %>
+            <%= form.text_area :content, placeholder: "Add a Post", class: 'textarea neue-input', rows: '2' %>
             <%= form.file_field :picture, class: 'file-upload' %>
           </p>
 
 
           <p class="control">
-            <%= form.submit 'Post', class: 'button is-info'%>
+            <%= form.submit 'Post', class: 'button neue-long-btn'%>
           </p>
         </div>
 

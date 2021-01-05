@@ -3,7 +3,7 @@
     <%= render 'profileblurb' %>
   </div>
 
-  <div class="column is-8">
+  <div class="column is-6">
     <% if current_user.id == @user.id %>
     <%= render 'post_shared/form' %>
     <% end %>

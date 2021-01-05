@@ -1,6 +1,6 @@
   <% @posts.each do |post| %>
 
-<div class="card post-box">
+<div class="card post-box neue-box">
   <div class="card-content">
     <div class="media post-header">
       <div class="media-left">
@@ -11,8 +11,8 @@
       </div>
 
       <div class="media-content">
-        <p class="title is-4"><%= post.author.name %></p>
-        <p class="subtitle is-6"><%= post.created_at.strftime("%B %e, %Y at %l:%M %p") %></p>
+        <p class="post-author"><%= post.author.name %></p>
+        <p class="post-date"><%= post.created_at.strftime("%B %e, %Y at %l:%M %p") %></p>
         <% end %>
       </div>
       
@@ -20,7 +20,9 @@
       <div class="media-right">
         <% if current_user.id == post.author.id %>
             <%= link_to post_path(post), method: :delete, data: { confirm: 'Are you sure?' } do %> 
-              <i class="fas fa-times"></i>
+            <span class="icon is-medium neue-round-btn">
+              <i class="fas fa-lg fa-times"></i>
+            </span>
             <% end %>
          <% end %>
       </div>
@@ -30,33 +32,31 @@
     <div class="content">
       <p><%= post.content %></p>
     </div>
-
+  </div>
     <div class="card-image">
       <figure class="image">
-        <%= image_tag(post.picture, class: "post-image") if post.picture.attached? %>
+        <%= image_tag(post.picture) if post.picture.attached? %>
       </figure>
     </div>
-
+  <div class="card-content">
     <div class="level">
       <div class="level-item">
         <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
           <% if pre_like %>
-            <%= link_to 'Unlike', post_like_path(post, pre_like), method: :delete %>
+            <%= link_to 'Unlike', post_like_path(post, pre_like), method: :delete, class: 'button neue-long-btn' %>
           <% else %>
-            <%= link_to 'Like', post_like_path(post), method: :post %>
+            <%= link_to 'Like', post_like_path(post), method: :post, class: 'button neue-long-btn' %>
           <% end %>
       </div>
 
       <div class="level-item">
-        <%= link_to 'Comment' %>
+        <%= link_to 'Comment', root_path, class: 'button neue-long-btn' %>
       </div>
 
       <div class="level-item">
-        <%= link_to 'Share', post %>
+        <%= link_to 'Share', post, class: 'button neue-long-btn' %>
       </div>
     </div>
-
-    <hr class="solid">
 
     <p class="is-size-7 stats"><%= post.likes.count %> Likes | <%= post.comments.count %> Comments </p>
 
@@ -76,7 +76,9 @@
       <div class="media-right">
         <% if current_user.id == comment.user.id %>
             <%= link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %> 
+              <span class="icon neue-round-small">
               <i class="fas fa-times"></i>
+              </span>
             <% end %>
          <% end %>
       </div>
@@ -95,11 +97,11 @@
       <%= form_for [post, Comment.new], html: { class: 'comment-form'} do |f| %>
         <div class="field is-grouped">
           <p class="control is-expanded">
-            <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea',rows: '1' %>
+            <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea neue-input',rows: '1' %>
           </p>
 
           <p class="control">
-            <%= f.submit 'Add Comment', class: 'button is-info' %>
+            <%= f.submit 'Comment', class: 'button neue-long-btn' %>
           </p>
         </div>
       <% end %>

@@ -1,27 +1,27 @@
 <div class="columns is-centered">
-  <div class="column is-4">
+  <div class="column is-6">
     <h1>Friend Requests</h1>
     <div class="user-index">
     <% @friend_requests.each do |friendship| %>
-    <div class="card">
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
+    <div class="box neue-long">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
             <figure class="image is-48x48">
               <%= link_to user_path(friendship.user) do %>
                 <%= image_tag(friendship.user.profile.picture, width: 28, class: "profile-icon") if friendship.user.profile.picture.attached? %>
             </figure>
           </div>
 
-          <div class="media-content">
-            <p class="title is-4"><%= friendship.user.name %></p>
-            <p class="subtitle is-6">@<%= friendship.user.username %></p>
+          <div id="stack">
+            <p class="name"><%= friendship.user.name %></p>
+            <p class="username">@<%= friendship.user.username %></p>
           </div>
               <% end %>
         </div>
 
-        <footer class="card-footer">
-          <%= link_to "Accept", friendship_path(friendship), method: :patch, class: "card-footer-item" %>
+        <footer class="level-right">
+          <%= link_to "Accept", friendship_path(friendship), method: :patch, class: "level-item button neue-long-btn" %>
         </footer>
       </div>
     </div>
@@ -31,25 +31,26 @@
     <h1>Friends</h1>
     <div class="user-index">
     <% @friends.each do |friend| %>
-    <div class="card">
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
+    <div class="box neue-long">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
             <figure class="image is-48x48">
               <%= link_to user_path(friend) do %>
                 <%= image_tag(friend.profile.picture, width: 28, class: "profile-icon") if friend.profile.picture.attached? %>
             </figure>
           </div>
 
-          <div class="media-content">
-            <p class="title is-4"><%= friend.name %></p>
-            <p class="subtitle is-6">@<%= friend.username %></p>
+          <div id="stack">
+            <p class="name"><%= friend.name %></p>
+            <p class="username">@<%= friend.username %></p>
           </div>
               <% end %>
         </div>
 
-        <footer class="card-footer">
-          <%= link_to "Unfriend", friendship_path(id: friend), method: :delete, class: "card-footer-item" %>
+        <footer class="level-right">
+          <p class="level-item neue-input">Friend</p>
+          <%= link_to "Unfriend", friendship_path(id: friend), method: :delete, class: "level-item neue-long-btn button" %>
         </footer>
       </div>
     </div>

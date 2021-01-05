@@ -1,47 +1,47 @@
 <div class="columns is-centered">
-  <div class="column is-4 ">
+  <div class="column is-6 ">
     <div class="user-index">
     <% @users.each do |user| %>
-    <div class="card">
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
+    <div class="box neue-long">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
             <figure class="image is-48x48">
               <%= link_to user_path(user) do %>
-                <%= image_tag(user.profile.picture, width: 28, class: "profile-icon") if user.profile.picture.attached? %>
-              
+                <%= image_tag(user.profile.picture, width: 24, class: "profile-icon") if user.profile.picture.attached? %>
             </figure>
           </div>
 
-          <div class="media-content">
-            <p class="title is-4"><%= user.name %></p>
-            <p class="subtitle is-6">@<%= user.username %></p>
+          <div class="" id='stack'>
+            <p class="name"><%= user.name %></p>
+            <p class="username">@<%= user.username %></p>
           </div>
           <% end %>
         </div>
-          <footer class="card-footer">
-            <% if current_user.friends.include?(user) %>
 
-              <%= link_to "Unfriend", friendship_path(id: user),method: :delete, class: "card-footer-item" %>
+        <div class="level-right">
+            <% if current_user.friends.include?(user) %>
+              <p class= "level-item neue-input">Friend</p>
+              <%= link_to "Unfriend", friendship_path(id: user),method: :delete, class: "level-item neue-long-btn button" %>
             
             <% elsif current_user.friendships.find { |f| f.friend_id == user.id && f.confirmed == false } %>
 
-              <p class= "card-footer-item pending-friend-request">Pending Friend Request</p>
-              <%= link_to "Cancel", friendship_path(id: user), method: :delete, class: "card-footer-item" %>
+              <p class= "level-item neue-input">Pending</p>
+              <%= link_to "Cancel", friendship_path(id: user), method: :delete, class: "level-item neue-long-btn button" %>
 
             <% elsif current_user.inverse_friendships.find{ |f| f.friend_id  == current_user.id && f.user_id == user.id && f.confirmed == false} %>
 
               <% @friendship = current_user.inverse_friendships.find { |f| f.friend_id == current_user.id && f.user_id == user.id } %>
               <% @friendship.id %>
-              <%= link_to "Accept", friendship_path(id: @friendship.id), method: :patch, class: "card-footer-item"%>
+              <%= link_to "Accept", friendship_path(id: @friendship.id), method: :patch, class: "level-item neue-long-btn button"%>
 
             <% else %>
 
-              <%= link_to "Send Friend Request", friendships_path(friend_id: user.id), method: :post, class: "card-footer-item"%>
+              <%= link_to "Send Friend Request", friendships_path(friend_id: user.id), method: :post, class: "level-item neue-long-btn button"%>
             
             <% end %>
-              
-          </footer>
+        </div>
+
         
       </div>
     </div>

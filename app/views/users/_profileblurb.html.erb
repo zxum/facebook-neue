@@ -1,15 +1,18 @@
-<div class="card">
-  <div class="card-image">
+<div class="card neue-box">
+<div class="card-content">
+  <div class="card-image">  
     <figure class="image is-square profile-icon">
-      <%= image_tag(@user.profile.picture, width: 128) if @user.profile.picture.attached? %>
+      <%= link_to user_path(@user) do %>
+      <%= image_tag(@user.profile.picture, width: '128', class: 'profile-icon') if @user.profile.picture.attached? %>
+      <% end %>
     </figure>
   </div>
 
-  <div class="card-content">
+  
     <div class="media">
       <div class="media-content">
-        <p class="title is-4"><%= @user.name %></p>
-        <p class="subtitle is-5">@<%= @user.username %></p>
+        <p class="name"><%= @user.name %></p>
+        <p class="username">@<%= @user.username %></p>
       </div>
     </div>
 
@@ -19,12 +22,12 @@
       <strong>Relationship Status</strong><small> <%= @user.profile.relationship_status %></small></br>
       <strong>Hometown</strong><small> <%= @user.profile.hometown %></small></br>
       <strong>Favorite Quote</strong><small> <%= @user.profile.favorite_quote %></small></br>
-      <strong>About Me</strong><small> <%= @user.profile.about_you %></small></br>
+      <strong>About Me</strong></br><small> <%= @user.profile.about_you %></small></br>
     </div>
 
     <% if current_user.id == @user.id %>
     <footer class="card-footer">
-      <%= link_to 'Edit', edit_profile_path(@user.profile), class: 'card-footer-item' %> 
+      <%= link_to 'Edit', edit_profile_path(@user.profile), class: 'card-footer-item neue-long-btn' %> 
     </footer>
     <% end %>
   </div>

@@ -1,7 +1,7 @@
 <div class="columns is-centered">
   <div class="column is-5">
     <h2 class="title is-2">Edit Profile</h2>
-
+    <div class="box neue-box">
       <%= form_with(model: profile, local: true) do |form| %>
         <% if profile.errors.any? %>
           <div id="error_explanation">
@@ -17,58 +17,59 @@
 
       <div class="field">
       <div class="control">
-        <%= form.label :birthdate %>
-        <%= form.date_field :birthdate %>
+        <%= form.label :birthdate, class: 'label' %>
+        <%= form.date_field :birthdate, class: 'input neue-input' %>
       </div>
       </div>
 
       <div class="field">
       <div class="control">
-        <%= form.label :relationship_status %>
-        <%= form.text_field :relationship_status  %>
+        <%= form.label :relationship_status, class: 'label' %>
+        <%= form.text_field :relationship_status, class: 'input neue-input'  %>
       </div>
       </div>
 
       <div class="field">
       <div class="control">
-        <%= form.label :hometown %>
-        <%= form.text_field :hometown %>
+        <%= form.label :hometown, class: 'label' %>
+        <%= form.text_field :hometown, class: 'input neue-input' %>
       </div>
       </div>
 
       <div class="field">
       <div class="control">
-          <%= form.label :current_city %>
-          <%= form.text_field :current_city %>
+          <%= form.label :current_city, class: 'label' %>
+          <%= form.text_field :current_city, class: 'input neue-input' %>
       </div>
       </div>
 
       <div class="field">
       <div class="control">
-        <%= form.label :favorite_quote %>
-        <%= form.text_area :favorite_quote %>
+        <%= form.label :favorite_quote, class: 'label' %>
+        <%= form.text_area :favorite_quote, class: 'input neue-input' %>
       </div>
       </div>
 
       <div class="field">
       <div class="control">
-        <%= form.label :about_you %>
-        <%= form.text_area :about_you %>
+        <%= form.label :about_you, class: 'label' %>
+        <%= form.text_area :about_you, class: 'input neue-input' %>
       </div>
       </div>
 
       <div class="field">
       <div class="control">
-        <%= form.label :picture %>
+        <%= form.label :picture, class: 'label' %>
         <%= form.file_field :picture %>
       </div>
       </div>
 
       <div class="actions">
-        <%= form.submit "Update Profile", class: "button is-info is-medium" %>
+        <%= form.submit "Update Profile", class: "button neue-long-btn is-medium" %>
       </div>
 
       <% end %>
+    </div>
   </div>
 </div>
 

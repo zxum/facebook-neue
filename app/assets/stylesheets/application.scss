@@ -15,18 +15,151 @@
  */
 
 @import "bulma";
-// 
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Raleway', sans-serif;
+// BODY 
+html,
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #D2DEEF;
+    color: #66727C;
+}
+
+.section {
+    padding: 1.5rem;
+}
+
+a {
+    color: #66727C;
+}
+
+a:hover {
+    background-color: transparent;
+    color: #66727C;
+}
+
+.button,
+.subtitle,
+.title,
+.card {
+    color: #66727C;
+}
+
+// NEUE
+.neue-round-btn {
+    border-radius: 50%;
+    background-color: #eaf0f8;
+    box-shadow: -4px -4px 8px #FFFFFF, 4px 4px 8px rgba(0, 0, 0, .3);
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 32px;
+}
+
+.neue-round-small {
+    border-radius: 50%;
+    background-color: #eaf0f8;
+    box-shadow: -4px -4px 8px #FFFFFF, 4px 4px 8px rgba(0, 0, 0, .3);
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 24px;
+}
+
+.neue-bar {
+    border-radius: 5em;
+    background-color: #EAF0F8;
+    box-shadow: 8px 8px 15px #b3bdcb;
+    margin: 2em 2em 1em 2em;
+    padding: 0 .5em;
+}
+
+.neue-long {
+    border-radius: 5em;
+    background-color: #EAF0F8;
+    box-shadow: 8px 8px 15px #b3bdcb;
+    margin: 1em;
+    padding: .5em 1em;
+}
+
+.neue-box {
+    border-radius: 1.5em;
+    background-color: #eaf0f8;
+    box-shadow: 8px 8px 15px #b3bdcb;
+}
+
+.neue-input {
+    box-shadow: inset -4px -4px 8px #FFFFFF, inset 4px 4px 8px #b3bdcb;
+    border-radius: 15px;
+    background-color: #eaf0f8;
+    border-style: none;
+    padding: .5em 1em .5em 1em;
+    color: #66727C;
+}
+
+.textarea:active,
+.textarea:focus {
+    border-style: none;
+    box-shadow: inset -4px -4px 9px #FFFFFF, inset 4px 4px 9px #b3bdcb;
+    border-color: transparent;
+}
+
+.neue-long-btn {
+    border-radius: 1000px;
+    background-color: #eaf0f8;
+    box-shadow: -4px -4px 8px #FFFFFF, 4px 4px 8px rgba(0, 0, 0, .3);
+    border-style: none;
+    font-size: .8rem;
+}
+
+// PROFILE
 .profile-icon {
     border-radius: 50%;
 }
 
+.name {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.name,
+.username {
+    text-align: center;
+}
+
+.card-footer-item {
+    padding: 0.4rem;
+    font-size: .75rem;
+}
+
+.card-footer-item:not(:last-child) {
+    margin-bottom: 1em;
+}
+
 // NAVBAR 
 nav .fa-facebook {
-    color: blue;
+    color: #a7B3Be;
+    height: 80%;
+    width: 80%;
+}
+
+#facebooklogo,
+#neuelogo {
+    font-family: 'Open Sans', sans-serif;
+}
+
+#facebooklogo {
+    font-weight: bold;
 }
 
 nav .navbar-item img {
     border-radius: 50%;
+    max-height: 2rem;
 }
 
 nav .navbar-item .profile-name {
@@ -34,18 +167,14 @@ nav .navbar-item .profile-name {
     align-items: center;
 }
 
-nav .navbar-item .notif-bubble {
-    background-color: red;
-    border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
-    text-align: center;
-    color: white;
-    font-weight: bold;
+nav .navbar-name {
+    padding-left: .75em;
 }
 
-nav .navbar-name {
-    padding-left: .5em;
+.navbar-item.has-dropdown:focus .navbar-link,
+.navbar-item.has-dropdown:hover .navbar-link,
+.navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: transparent;
 }
 
 // PEOPLE 
@@ -61,9 +190,17 @@ nav .navbar-name {
     margin-left: 1em;
 }
 
-.user-index .pending-friend-request {
-    font-size: .85em;
-    background-color: #ccc;
+#stack {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
+#stack .name,
+#stack .username {
+    margin-top: 0;
+    text-align: left;
+    align-self: left;
 }
 
 // COMMENT FORM
@@ -84,16 +221,30 @@ nav .navbar-name {
 
 // POST FEED 
 .post-box {
-    margin: 1em;
+    margin-bottom: 1.5em;
 }
 
 .post-header {
     display: flex;
     width: 100%;
+    align-items: center;
 }
 
 .post-image {
     margin-bottom: 1.5em;
+}
+
+.post-author {
+    font-size: 1.2em;
+    font-weight: 700;
+    font-style: bold;
+}
+
+.post-date {
+    padding-top: .125em;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
 }
 
 .stats {
@@ -104,8 +255,8 @@ nav .navbar-name {
     display: flex;
     width: 100%;
     border-radius: 40px;
-    border: 1px solid lightgrey;
-    padding: .5em 1.25em .5em 1.25em;
+    box-shadow: inset -4px -4px 9px #FFFFFF, inset 4px 4px 9px #b3bdcb;
+    padding: .5em .75em .5em 1.25em;
 }
 
 // POST FORM 
