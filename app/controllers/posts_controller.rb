@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     end
     
     @posts = @current_user_posts + @friends_posts
+    raise
   end
 
   # GET /posts/1

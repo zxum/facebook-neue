@@ -7,14 +7,11 @@ class LikesController < ApplicationController
       flash[:notice] = "You've already liked this post."
     else
       @like = @post.likes.build(user_id: current_user.id)
-      respond_to do |format|
-        if @like.save 
-          format.html { redirect_back(fallback_location: root_path), notice: 'You liked a post' }
-          format.json { render :show, status: :created, location: @like }
-        else 
-          format.html { render :new }
-          format.json { render json: @like.errors, status: :unprocessable_entity }
-        end
+      if @like.save 
+        redirect_back(fallback_location: root_path)
+        flash[:notice] = 'You liked a post' 
+      else 
+        render :new
       end
     end
   end
@@ -25,7 +22,8 @@ class LikesController < ApplicationController
     else
       @like.destroy
     end 
-    redirect_to post_path(@post)
+    flash[:notice] = "You have unliked a post"
+    redirect_back(fallback_location: root_path)
   end
 
 

@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(content: params[:comment][:content], post: @post)
 
     if @comment.save
+      flash[:notice] = 'Comment successfully posted'
       redirect_back(fallback_location: root_path)
     else
       flash[:alert] = "Something went wrong"
