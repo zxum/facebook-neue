@@ -62,15 +62,17 @@
 
     <% post.comments.each do |comment| %>
 
-    <article class="media">
+    <article class="media comment-line">
       <div class="media-left">
         <figure class="image is-48x48">
+        <%= link_to comment.user do %>
           <%= image_tag(comment.user.profile.picture, class: "profile-icon") if comment.user.profile.picture.attached? %>
+        <% end %>
         </figure>
       </div>
       <div class="comment-bubble">
       <div class="media-content">
-        <strong><%= comment.user.name %></strong><span> <%= comment.content %></span>
+        <strong><%= link_to comment.user do %><%= comment.user.name %><% end %></strong><span> <%= comment.content %></span>
       </div>
 
       <div class="media-right">
@@ -95,7 +97,7 @@
         </div>
       </figure>
       <%= form_for [post, Comment.new], html: { class: 'comment-form'} do |f| %>
-        <div class="field is-grouped">
+        <div class="field is-grouped comment-form">
           <p class="control is-expanded">
             <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea neue-input',rows: '1' %>
           </p>
