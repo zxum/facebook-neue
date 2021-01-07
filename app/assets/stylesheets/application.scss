@@ -455,6 +455,11 @@ h2.centered {
     text-align: center;
 }
 
+.centered-area {
+    justify-content: center;
+    display: flex;
+}
+
 // NOTIFICATIONS 
 .notification {
     padding: .2rem 2.5rem .2rem 1.5rem;
