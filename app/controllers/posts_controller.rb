@@ -5,15 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @current_user_posts = current_user.authored_posts
-    @friends_posts = []
-
-    current_user.friends.each do |friend|
-      @friends_posts += friend.authored_posts
-    end
-    
-    @posts = @current_user_posts + @friends_posts
-  
+      @posts = Post.where(author_id: current_user.friends).or(Post.where(author_id: current_user)).order(created_at: :desc)
   end
 
   # GET /posts/1
