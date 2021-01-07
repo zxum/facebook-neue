@@ -454,3 +454,14 @@ span#file-name {
 h2.centered {
     text-align: center;
 }
+
+// NOTIFICATIONS 
+.notification {
+    padding: .2rem 2.5rem .2rem 1.5rem;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
