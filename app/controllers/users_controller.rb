@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
     @profile = @user.profile
-    @posts = @user.authored_posts
+    @posts = @user.authored_posts.order(created_at: :desc)
   end
 
   def index
