@@ -3,7 +3,7 @@
   <div class="card-image">
     <figure class="image is-square">
       <%= link_to user_path(current_user) do %>
-      <%= image_tag(current_user.profile.picture, width: '128', class: "profile-icon") if current_user.profile.picture.attached? %>
+        <%= image_tag(current_user.profile.picture, width: '128', class: "profile-icon") if current_user.profile.picture.attached? %>
       <% end %>
     </figure>
   </div>

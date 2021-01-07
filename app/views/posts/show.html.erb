@@ -1,109 +1,155 @@
-<div class="card post-box">
+<div class="columns is-centered">
+
+<div class="column is-3">
+  <div class="card neue-box">
   <div class="card-content">
-    <div class="media post-header">
-      <div class="media-left">
-      <%= link_to user_path(@post.author) do %>
-        <figure class="image is-48x48">
-          <%= image_tag(@post.author.profile.picture, class: "profile-icon") if @post.author.profile.picture.attached? %>
-        </figure>
-      </div>
-
-      <div class="media-content">
-        <p class="title is-4"><%= @post.author.name %></p>
-        <p class="subtitle is-6"><%= @post.created_at.strftime("%B %e, %Y at %l:%M %p") %></p>
+    <div class="card-image">  
+      <figure class="image is-square profile-icon">
+        <%= link_to user_path(@post.author) do %>
+        <%= image_tag(@post.author.profile.picture, width: '128', class: 'profile-icon') if @post.author.profile.picture.attached? %>
         <% end %>
-      </div>
-      
-
-      <div class="media-right">
-        <% if current_user.id == @post.author.id %>
-            <%= link_to post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } do %> 
-              <i class="fas fa-times"></i>
-            <% end %>
-         <% end %>
-      </div>
-    </div>
-
-
-    <div class="content">
-      <p><%= @post.content %></p>
-    </div>
-
-    <div class="card-image">
-      <figure class="image">
-        <%= image_tag(@post.picture, class: "post-image") if @post.picture.attached? %>
       </figure>
     </div>
 
-    <div class="level">
-      <div class="level-item">
-        <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
-          <% if pre_like %>
-            <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete %>
-          <% else %>
-            <%= link_to 'Like', post_like_path(@post), method: :post %>
+    
+      <div class="media">
+        <div class="media-content">
+          <p class="name"><%= @post.author.name %></p>
+          <p class="username">@<%= @post.author.username %></p>
+        </div>
+      </div>
+
+      <div class="content">
+        <strong>Birthday</strong><small> <%= @post.author.profile.birthdate %></small></br>
+        <strong>Current City</strong><small> <%= @post.author.profile.current_city %></small></br>
+        <strong>Relationship Status</strong><small> <%= @post.author.profile.relationship_status %></small></br>
+        <strong>Hometown</strong><small> <%= @post.author.profile.hometown %></small></br>
+        <strong>Favorite Quote</strong><small> <%= @post.author.profile.favorite_quote %></small></br>
+        <strong>About Me</strong></br><small> <%= @post.author.profile.about_you %></small></br>
+      </div>
+
+      <% if current_user.id == @post.author.id %>
+      <footer class="card-footer">
+        <%= link_to 'Edit Profile', edit_profile_path(@post.author.profile), class: 'card-footer-item neue-long-btn' %> 
+      </footer>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="column is-6">
+
+  <div class="card post-box neue-box">
+    <div class="card-content">
+      <div class="media post-header">
+        <div class="media-left">
+        <%= link_to user_path(@post.author) do %>
+          <figure class="image is-48x48">
+            <%= image_tag(@post.author.profile.picture, class: "profile-icon") if @post.author.profile.picture.attached? %>
+          </figure>
+        </div>
+
+        <div class="media-content">
+          <p class="post-author"><%= @post.author.name %></p>
+          <p class="post-date"><%= @post.created_at.strftime("%B %e, %Y at %l:%M %p") %></p>
           <% end %>
+        </div>
+        
+
+        <div class="media-right">
+          <% if current_user.id == @post.author.id %>
+              <%= link_to post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                <span class="icon is-medium neue-round-btn">
+                  <i class="fas fa-times"></i>
+                </span>
+              <% end %>
+          <% end %>
+        </div>
       </div>
 
-      <div class="level-item">
-        <%= link_to 'Comment' %>
-      </div>
 
-      <div class="level-item">
-        <%= link_to 'Share', @post %>
+      <div class="content">
+        <p><%= @post.content %></p>
       </div>
     </div>
-
-    <hr class="solid">
-
-    <p class="is-size-7 stats"><%= @post.likes.count %> Likes | <%= @post.comments.count %> Comments </p>
-
-    <% @post.comments.each do |comment| %>
-
-    <article class="media">
-      <div class="media-left">
-        <figure class="image is-48x48">
-          <%= image_tag(comment.user.profile.picture, class: "profile-icon") if comment.user.profile.picture.attached? %>
+      <div class="card-image">
+        <figure class="image">
+          <%= image_tag(@post.picture) if @post.picture.attached? %>
         </figure>
       </div>
-      <div class="comment-bubble">
-      <div class="media-content">
-        <strong><%= comment.user.name %></strong><span> <%= comment.content %></span>
-      </div>
-
-      <div class="media-right">
-        <% if current_user.id == comment.user.id %>
-            <%= link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %> 
-              <i class="fas fa-times"></i>
+    <div class="card-content">
+      <div class="level">
+        <div class="level-item">
+          <% pre_like = @post.likes.find { |like| like.user_id == current_user.id} %>
+            <% if pre_like %>
+              <%= link_to 'Unlike', post_like_path(@post, pre_like), method: :delete, class: 'button neue-long-btn' %>
+            <% else %>
+              <%= link_to 'Like', post_like_path(@post), method: :post, class: 'button neue-long-btn' %>
             <% end %>
-         <% end %>
-      </div>
-      </div>
-   
-    </article>
-    <% end %>
-
-
-    <article class="media comment-form">
-      <figure class="media-left">
-        <div class="image is-48x48">
-          <%= image_tag(current_user.profile.picture, class: 'profile-icon') if current_user.profile.picture.attached? %>
         </div>
-      </figure>
-      <%= form_for [@post, Comment.new], html: { class: 'comment-form'} do |f| %>
-        <div class="field is-grouped">
-          <p class="control is-expanded">
-            <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea',rows: '1' %>
-          </p>
 
-          <p class="control">
-            <%= f.submit 'Add Comment', class: 'button is-info' %>
-          </p>
+        <div class="level-item">
+          <%= link_to 'Comment', post_path, class: 'button neue-long-btn' %>
         </div>
+
+        <div class="level-item">
+          <%= link_to 'Share', @post, class: 'button neue-long-btn' %>
+        </div>
+      </div>
+
+      <p class="is-size-7 stats"><%= @post.likes.count %> Likes | <%= @post.comments.count %> Comments </p>
+
+      <% @post.comments.each do |comment| %>
+
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <%= image_tag(comment.user.profile.picture, class: "profile-icon") if comment.user.profile.picture.attached? %>
+          </figure>
+        </div>
+        <div class="comment-bubble">
+        <div class="media-content">
+          <strong><%= comment.user.name %></strong><span> <%= comment.content %></span>
+        </div>
+
+        <div class="media-right">
+          <% if current_user.id == comment.user.id %>
+              <%= link_to post_comment_path(comment.post, comment), method: :delete, data: { confirm: 'Are you sure?' } do %> 
+                <span class="icon neue-round-small">
+                  <i class="fas fa-times"></i>
+                </span>
+              <% end %>
+          <% end %>
+        </div>
+        </div>
+    
+      </article>
       <% end %>
-    </article>
 
+
+      <article class="media comment-form">
+        <figure class="media-left">
+          <div class="image is-48x48">
+            <%= image_tag(current_user.profile.picture, class: 'profile-icon') if current_user.profile.picture.attached? %>
+          </div>
+        </figure>
+        <%= form_for [@post, Comment.new], html: { class: 'comment-form'} do |f| %>
+          <div class="field is-grouped">
+            <p class="control is-expanded">
+              <%= f.text_area :content, placeholder: "Add a comment", class: 'textarea neue-input',rows: '1' %>
+            </p>
+
+            <p class="control">
+              <%= f.submit 'Add Comment', class: 'button neue-long-btn' %>
+            </p>
+          </div>
+        <% end %>
+      </article>
+
+    </div>
   </div>
+
+</div>
 </div>
 
 

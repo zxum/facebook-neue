@@ -10,9 +10,10 @@
 
       <%= form_with(model: @post, local: true, class: 'post-form') do |form| %>
         <div class="field is-grouped">
-          <p class="control is-expanded">
-            <%= form.text_area :content, placeholder: "Add a Post", class: 'textarea neue-input', rows: '2' %>
-            <%= form.file_field :picture, class: 'file-upload' %>
+          <p class="control is-expanded post-form-box">
+            <%= form.text_area :content, placeholder: "Add a Post", class: 'textarea neue-input', id: 'post-textarea', rows: '1' %>
+            <%= form.file_field :picture, class: 'file-upload', id: 'file', 'data-multiple-caption':"{count} files selected", multiple: true %>
+            <label for="file" class="custom-file-upload">Browse</label><span id="file-name">No file selected</span>
           </p>
 
 

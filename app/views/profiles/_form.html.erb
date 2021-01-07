@@ -1,7 +1,9 @@
 <div class="columns is-centered">
   <div class="column is-5">
-    <h2 class="title is-2">Edit Profile</h2>
+  <%= link_to 'Back', :back %></br></br>
     <div class="box neue-box">
+    
+    <h2 class="title is-2">Edit Profile</h2>
       <%= form_with(model: profile, local: true) do |form| %>
         <% if profile.errors.any? %>
           <div id="error_explanation">
@@ -60,11 +62,12 @@
       <div class="field">
       <div class="control">
         <%= form.label :picture, class: 'label' %>
-        <%= form.file_field :picture %>
+        <%= form.file_field :picture, class: 'file-upload', id: 'file', 'data-multiple-caption':"{count} files selected", multiple: true %>
+        <label for="file" class="custom-file-upload">Browse</label><span id="file-name">No file selected</span>
       </div>
       </div>
 
-      <div class="actions">
+      <div class="field is-grouped is-grouped-centered">
         <%= form.submit "Update Profile", class: "button neue-long-btn is-medium" %>
       </div>
 
