@@ -6,12 +6,39 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
       @posts = Post.where(author_id: current_user.friends).or(Post.where(author_id: current_user)).order(created_at: :desc)
-  end
+    end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @user = @post.author
+    
+    months = {
+      1=> 'January',
+      2=> 'Feburary',
+      3=> 'March',
+      4=> 'April',
+      5=> 'May',
+      6=> 'June',
+      7=> 'July',
+      8=> 'August',
+      9=> 'September',
+      10=> 'October',
+      11=> 'November',
+      12=> 'December'
+    }
+    @profile = @user.profile
+    birthday = @profile.birthdate.split('-').map(&:to_i)
+    year = birthday[0].to_s
+    month = months[birthday[1]]
+    day = birthday[2].to_s
+
+    if @profile.birthdate != ''
+      @birthdate = "#{month} #{day}, #{year}"
+    else 
+      @birthdate = ""
+    end
   end
 
   # GET /posts/new
