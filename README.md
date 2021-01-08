@@ -17,6 +17,17 @@ Images are hosted on the Google Cloud Platform and uses Active Storage to manage
 
 
 ## Demo
+Check out the live version here: [Link](https://mighty-beyond-26808.herokuapp.com/)
+
+You can log in as any of the following (password is 'password'): 
+* percival@test.com
+* merlin@test.com
+* arthur@test.com
+* gawain@test.com
+* galahad@test.com
+
+The live site does not include the Welcome Message mailing feature. If you'd like to try the mailing feature, clone this repo to your local machine and test it out. See the Get Started section for more details. 
+
 ![demo](app/assets/images/facebook-neue-demo.gif)
 
 ## Gems Used
