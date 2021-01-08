@@ -1,4 +1,16 @@
-  <% @posts.each do |post| %>
+<% if @posts.empty? %>
+  <div class="card post-box neue-box">
+  </br>
+  </br>
+    <h2 class="centered">No Posts</h2>
+  </br>
+  </br>
+  </div>
+
+<% else %>
+
+
+<% @posts.each do |post| %>
 
 <div class="card post-box neue-box">
   <div class="card-content">
@@ -114,7 +126,4 @@
 
 <% end %>
 
-
-
-
-  
+<% end %>

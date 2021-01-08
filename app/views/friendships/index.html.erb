@@ -2,6 +2,11 @@
   <div class="column is-6">
     <h1>Friend Requests</h1>
     <div class="user-index">
+    <% if @friend_requests.empty?%>
+      <div class="box neue-long">
+        <p class="centered">No Pending Requests</p>
+      </div> 
+    <% else %>
     <% @friend_requests.each do |friendship| %>
     <div class="box neue-long">
       <div class="level">
@@ -27,8 +32,15 @@
     </div>
     <% end %>
     </div>
-
+    <% end %>
+    
     <h1>Friends</h1>
+
+    <% if @friends.empty? %>
+      <div class="box neue-long">
+        <p class="centered">No Friends</p>
+      </div>
+    <% else %>
     <div class="user-index">
     <% @friends.each do |friend| %>
     <div class="box neue-long">
@@ -56,6 +68,7 @@
     </div>
     <% end  %>
     </div>
+    <% end %>
   </div>
 </div>
 
