@@ -81,9 +81,9 @@ class User < ApplicationRecord
   
   # MAILER 
 
-  after_create :sign_up_send
+  # after_create :sign_up_send
   
-  def sign_up_send
-    RegistrationMailer.sign_up(self).deliver
-  end
+  # def sign_up_send
+  #   RegistrationMailer.sign_up(self).deliver
+  # end
 end
