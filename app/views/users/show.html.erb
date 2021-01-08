@@ -4,9 +4,6 @@
   </div>
 
   <div class="column is-6">
-    <% if current_user.id == @user.id %>
-    <%= render 'post_shared/form' %>
-    <% end %>
     <% unless @posts.nil? %>
     <%= render 'post_shared/feed' %>
     <% end %>
