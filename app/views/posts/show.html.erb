@@ -1,40 +1,7 @@
 <div class="columns is-centered">
 
 <div class="column is-3">
-  <div class="card neue-box">
-  <div class="card-content">
-    <div class="card-image">  
-      <figure class="image is-square profile-icon">
-        <%= link_to user_path(@post.author) do %>
-        <%= image_tag(@post.author.profile.picture, width: '128', class: 'profile-icon') if @post.author.profile.picture.attached? %>
-        <% end %>
-      </figure>
-    </div>
-
-    
-      <div class="media">
-        <div class="media-content">
-          <p class="name"><%= @post.author.name %></p>
-          <p class="username">@<%= @post.author.username %></p>
-        </div>
-      </div>
-
-      <div class="content">
-        <strong>Birthday</strong><small> <%= @post.author.profile.birthdate %></small></br>
-        <strong>Current City</strong><small> <%= @post.author.profile.current_city %></small></br>
-        <strong>Relationship Status</strong><small> <%= @post.author.profile.relationship_status %></small></br>
-        <strong>Hometown</strong><small> <%= @post.author.profile.hometown %></small></br>
-        <strong>Favorite Quote</strong><small> <%= @post.author.profile.favorite_quote %></small></br>
-        <strong>About Me</strong></br><small> <%= @post.author.profile.about_you %></small></br>
-      </div>
-
-      <% if current_user.id == @post.author.id %>
-      <footer class="card-footer">
-        <%= link_to 'Edit Profile', edit_profile_path(@post.author.profile), class: 'card-footer-item neue-long-btn' %> 
-      </footer>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'users/profileblurb' %>
 </div>
 
 <div class="column is-6">
