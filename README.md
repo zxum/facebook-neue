@@ -17,7 +17,7 @@ Images are hosted on the Google Cloud Platform and uses Active Storage to manage
 
 
 ## Demo
-TBD
+![demo](app/assets/images/facebook-neue-demo.gif)
 
 ## Gems Used
 * [Devise](https://github.com/heartcombo/devise)
@@ -59,7 +59,15 @@ $ rails server
 Once all the above is complete, open a web browser and go to localhost:3000 
 
 ## Reflections 
-TBD
+I knew from the start creating a Facebook clone would be a huge task. At first I was overwhelmed with where to start, but then I tapped into my previous work experience as a Project Manager and created a workflow document. The workflow was separated into three stages, preparatory, functions & features, and design. The prepatory stage included outlining database schemas, associations, and any accounts I would need to create (i.e. Facebook Developer Account, Google Cloud Platform Account). Once I gathered and laid out all the groundwork for my project, I set off into tackling the meat of the project. 
+
+The coding process went smoothly due to all the preparations I had done in the previous stage. I focused on getting the main features nailed down before working on the nitty gritty user experience features. What helped the most is breaking all the features down into small functions, such as 'Creating Friend Requests' or 'Accepting Friend Requests', rather than working on the entire Friendship model all at the same time. 
+
+Additionally, this project exposed me to several new concepts that I had not worked on before, like ActiveStorage which allowed me to upload images to my site, and host images on a cloud platform. Due to my certification in Google Cloud Platform, I decided to use GCP for image hosting, and it was a delight to apply my knowledge about cloud to this project. 
+
+Once I felt comfortable that the website functionality was stable, I was finally ready for my favorite part! Designing! I used Figma to mock up my UI and design theme with a neuemorphism style. Using a combination of Bulma and custom CSS, I successfully created a neuemorphic style based on the mockups I created. 
+
+This project was definitely a challenge, but I enjoyed working through each stage and am proud of what I've created because my end product matches the ambitious vision I had at the start of the project. 
 
 ***
 
