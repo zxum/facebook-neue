@@ -134,7 +134,9 @@ textarea,
 }
 
 .textarea:active,
-.textarea:focus {
+.textarea:focus,
+.input:focus,
+.input:active {
     border-style: none;
     box-shadow: inset -4px -4px 9px #FFFFFF, inset 4px 4px 9px #b3bdcb;
     border-color: transparent;
